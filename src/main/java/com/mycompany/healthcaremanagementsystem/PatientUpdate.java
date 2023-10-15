@@ -16,6 +16,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+/**
+ * Controller class for updating patient information in the Healthcare Management System.
+ */
 public class PatientUpdate implements Initializable {
 
 
@@ -38,11 +41,22 @@ public class PatientUpdate implements Initializable {
     @FXML
     private TextArea medicalHistoryField;
 
+    /**
+     * Initializes the controller class.
+     *
+     * @param url The location used to resolve relative paths for the root object.
+     * @param rb The resources used to localize the root object.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+
+    /**
+     * Event handler for selecting a gender from the menu.
+     *
+     * @param event The ActionEvent triggered by the user.
+     */
     @FXML
     private void genderMenuEvent(ActionEvent event) {
         MenuItem selectedItem = (MenuItem) event.getSource();
@@ -50,6 +64,11 @@ public class PatientUpdate implements Initializable {
         genderMenu.setText(selected);
     }
 
+    /**
+     * Event handler for updating patient information.
+     *
+     * @param event The ActionEvent triggered by the user.
+     */
     @FXML
     private void updatePatientBtn(ActionEvent event) {
             String firstName = firstnameField.getText();
@@ -115,52 +134,113 @@ public class PatientUpdate implements Initializable {
         }
     }
 
+    /**
+     * Event handler for returning to the Medical Staff Dashboard.
+     *
+     * @param event The ActionEvent triggered by the user.
+     */
     @FXML
     private void homeBtn(ActionEvent event) {
         App.changeWindow("MedicalStaffDashboard.fxml");
     }
 
+    /**
+     * Event handler for logging out. Redirects to the "loginForUser.fxml" window.
+     *
+     * @param event The ActionEvent triggered by the user.
+     */
     @FXML
     private void logoutBtn(ActionEvent event) {
         App.changeWindow("loginForUser.fxml");
     }
 
+    /**
+     * Gets the MenuButton for selecting a patient's gender.
+     *
+     * @return The MenuButton for gender selection.
+     */
     public MenuButton getGenderMenu() {
         return genderMenu;
     }
 
+    /**
+     * Gets the TextField for entering the patient's first name.
+     *
+     * @return The TextField for the first name.
+     */
     public TextField getFirstnameField() {
         return firstnameField;
     }
 
+    /**
+     * Gets the TextField for entering the patient's last name.
+     *
+     * @return The TextField for the last name.
+     */
     public TextField getLastnameField() {
         return lastnameField;
     }
 
+    /**
+     * Gets the TextField for entering the patient's address.
+     *
+     * @return The TextField for the address.
+     */
     public TextField getAddressField() {
         return addressField;
     }
 
+    /**
+     * Gets the TextField for entering the patient's contact number.
+     *
+     * @return The TextField for the contact number.
+     */
     public TextField getContactNumberField() {
         return contactNumberField;
     }
 
+    /**
+     * Gets the DatePicker for selecting the patient's date of birth.
+     *
+     * @return The DatePicker for date of birth selection.
+     */
     public DatePicker getDateOfBirthField() {
         return dateOfBirthField;
     }
 
+    /**
+     * Gets the TextField for entering the patient's Medicare card number.
+     *
+     * @return The TextField for the Medicare card number.
+     */
     public TextField getMedicareCardField() {
         return medicareCardField;
     }
 
+    /**
+     * Gets the Text element for displaying error messages.
+     *
+     * @return The Text element for error messages.
+     */
     public Text getError() {
         return error;
     }
 
+    /**
+     * Gets the TextArea for entering the patient's medical history.
+     *
+     * @return The TextArea for medical history input.
+     */
     public TextArea getMedicalHistoryField() {
         return medicalHistoryField;
     }
-    
+
+    /**
+     * Display an error message or clear it.
+     *
+     * @param e   A boolean indicating whether to display the error message.
+     * @param msg The error message to display.
+     */
     public void displayErrorMessage(boolean e,String msg)
     {
         error.setText(msg);
