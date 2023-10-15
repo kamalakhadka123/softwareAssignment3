@@ -13,6 +13,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+/**
+ * Controller class for searching and managing users in a healthcare management system.
+ */
 public class UserSearch implements Initializable {
 
 
@@ -25,11 +28,22 @@ public class UserSearch implements Initializable {
     @FXML
     private Button updateBtn;
 
+    /**
+     * Initializes the controller class.
+     *
+     * @param url The location to resolve relative paths for the root object, or null if the location is not known.
+     * @param rb The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+
+    /**
+     * Handles the action when the "Logout" button is clicked, changing the window to the user login screen.
+     *
+     * @param event The event triggered by the button click.
+     */
     @FXML
     private void logoutEvent(ActionEvent event) {
         
@@ -37,6 +51,11 @@ public class UserSearch implements Initializable {
  
     }
 
+     /**
+     * Handles the action when the "Search" button is clicked to find a user by ID.
+     *
+     * @param event The event triggered by the button click.
+     */
     @FXML
     private void searchBtnEvent(ActionEvent event) {
         try {
@@ -66,6 +85,12 @@ public class UserSearch implements Initializable {
         }
     }
 
+    /**
+     * Handles the action when the "Update User" button is clicked, changing the window to update user information.
+     *
+     * @param event The event triggered by the button click.
+     * @throws IOException If an I/O error occurs while changing the window.
+     */
     @FXML
     private void updateUserEvent(ActionEvent event) throws IOException {
         App.changeWindow("UpdateUser.fxml");
@@ -78,6 +103,11 @@ public class UserSearch implements Initializable {
         error.setVisible(e);
     }
 
+    /**
+     * Handles the action when the "Home" button is clicked, changing the window to the administrator dashboard.
+     *
+     * @param event The event triggered by the button click.
+     */
     @FXML
     private void homeBtn(ActionEvent event) {
         App.changeWindow("AdministratorDashboard.fxml");
