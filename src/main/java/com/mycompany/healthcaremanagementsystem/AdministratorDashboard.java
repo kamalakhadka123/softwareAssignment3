@@ -37,5 +37,10 @@ public class AdministratorDashboard implements Initializable {
             App.changeWindow("loginForUser.fxml");
         
     }
+     @FXML
+    private void viewAnalyticsEvent(ActionEvent event) {
+        App.changeWindow("ShowAnalytics.fxml");
+    }
+
 
 }
