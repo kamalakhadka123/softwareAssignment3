@@ -12,6 +12,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+/**
+ * Controller class for user login.
+ */
 public class loginForUser implements Initializable {
 
 
@@ -21,14 +24,23 @@ public class loginForUser implements Initializable {
     private PasswordField passwordField;
     @FXML
     private Text error;
+
     /**
      * Initializes the controller class.
+     *
+     * @param url The location to resolve relative paths for the root object, or null if the location is not known.
+     * @param rb The resources used to localize the root object, or null if the root object was not localized.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+
+    /**
+     * Handles the action when the "Login" button is clicked, attempting to log in the user.
+     *
+     * @param event The event triggered by the button click.
+     */
     @FXML
     private void loginEvent(ActionEvent event) {
         String userID = emailField.getText();
@@ -84,7 +96,13 @@ public class loginForUser implements Initializable {
         }
         
     }
-    
+
+    /**
+     * Displays an error message with the specified text.
+     *
+     * @param e   Indicates whether to display the error message (true) or hide it (false).
+     * @param msg The error message to display.
+     */
     public void displayErrorMessage(boolean e,String msg)
     {
         error.setText(msg);
