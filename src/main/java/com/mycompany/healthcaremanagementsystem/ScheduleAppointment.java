@@ -19,6 +19,9 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+/**
+ * Controller class for scheduling appointments in a healthcare management system.
+ */
 public class ScheduleAppointment implements Initializable {
 
 
@@ -46,11 +49,22 @@ public class ScheduleAppointment implements Initializable {
     private Label bookingTimeLabel;
     
 
+    /**
+     * Initializes the controller class.
+     *
+     * @param url The location to resolve relative paths for the root object, or null if the location is not known.
+     * @param rb The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+
+    /**
+     * Handles the action when the "Search" button is clicked to find a patient by ID.
+     *
+     * @param event The event triggered by the button click.
+     */
     @FXML
     private void searchBtn(ActionEvent event) {
         try {
@@ -80,6 +94,11 @@ public class ScheduleAppointment implements Initializable {
         }
     }
 
+    /**
+     * Handles the event when an item is selected in the booking reason menu.
+     *
+     * @param event The event triggered by the menu item selection.
+     */
     @FXML
     private void bookingMenuEvent(ActionEvent event) {
         MenuItem selectedItem = (MenuItem) event.getSource();
@@ -87,6 +106,12 @@ public class ScheduleAppointment implements Initializable {
         bookingReasonMenu.setText(selected);
     }
 
+
+    /**
+     * Handles the action when the "Book Appointment" button is clicked to schedule an appointment.
+     *
+     * @param event The event triggered by the button click.
+     */
     @FXML
     private void bookAppointmentEvent(ActionEvent event) {
         if(doPatientExist)
@@ -147,20 +172,34 @@ public class ScheduleAppointment implements Initializable {
             showError(true, "Patient search is required");
         }
     }
-    
+
+    /**
+     * Displays an error message with the specified text.
+     *
+     * @param e   Indicates whether to display the error message (true) or hide it (false).
+     * @param msg The error message to display.
+     */
     public void showError(boolean e,String msg)
     {
         error.setText(msg);
         error.setVisible(e);
     }
 
+    /**
+     * Handles the event when an item is selected in the booking time menu.
+     *
+     * @param event The event triggered by the menu item selection.
+     */
     @FXML
     private void bookingTimeEvent(ActionEvent event) {
         MenuItem selectedItem = (MenuItem) event.getSource();
         String selected = selectedItem.getText();
         bookingTimeMenu.setText(selected);
     }
-    
+
+    /**
+     * Clears all input fields on the form and hides or shows appointment-related elements.
+     */
         public void emptyFields()
     {
         searchField.setText("");
@@ -171,7 +210,12 @@ public class ScheduleAppointment implements Initializable {
         beginAppointment(false);
         showError(false, "");
     }
-        
+
+    /**
+     * Shows or hides appointment-related elements based on the given boolean value.
+     *
+     * @param show Indicates whether to show (true) or hide (false) the appointment elements.
+     */
     public void beginAppointment(boolean show)
     {
         bookingDateField.setVisible(show);
@@ -183,11 +227,22 @@ public class ScheduleAppointment implements Initializable {
         bookingTimeLabel.setVisible(show);
     }
 
+    
+    /**
+     * Handles the action when the "Home" button is clicked, changing the window to the medical staff dashboard.
+     *
+     * @param event The event triggered by the button click.
+     */
     @FXML
     private void homeBtn(ActionEvent event) {
         App.changeWindow("MedicalStaffDashboard.fxml");
     }
 
+    /**
+     * Handles the action when the "Log Out" button is clicked, changing the window to the user login screen.
+     *
+     * @param event The event triggered by the button click.
+     */
     @FXML
     private void logOutBtn(ActionEvent event) {
         App.changeWindow("loginForUser.fxml");
