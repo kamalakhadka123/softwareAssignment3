@@ -17,6 +17,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+/**
+ * Controller class for registering a new patient in the system.
+ */
 public class RegisterPatient implements Initializable {
 
 
@@ -38,8 +41,12 @@ public class RegisterPatient implements Initializable {
     private Text error;
     @FXML
     private TextArea medicalHistoryField;
+
     /**
      * Initializes the controller class.
+     *
+     * @param url        The location to resolve relative paths for the root object, or null if the location is not known.
+     * @param rb         The resources used to localize the root object, or null if the root object was not localized.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -119,22 +126,41 @@ public class RegisterPatient implements Initializable {
         }
     }
 
+    /**
+     * Handles the action when the "Home" button is clicked, changing the window to the medical staff dashboard.
+     *
+     * @param event The event triggered by the button click.
+     */
     @FXML
     private void homeBtn(ActionEvent event) {
         App.changeWindow("MedicalStaffDashboard.fxml");
     }
 
+    /**
+     * Handles the action when the "Logout" button is clicked, changing the window to the login screen for users.
+     *
+     * @param event The event triggered by the button click.
+     */
     @FXML
     private void logoutBtn(ActionEvent event) {
         App.changeWindow("loginForUser.fxml");
     }
-    
+
+    /**
+     * Displays an error message with the specified text.
+     *
+     * @param e   Indicates whether to display the error message (true) or hide it (false).
+     * @param msg The error message to display.
+     */
     public void displayErrorMessage(boolean e,String msg)
     {
         error.setText(msg);
         error.setVisible(e);
     }
-        
+
+    /**
+     * Clears all input fields on the form.
+     */
     public void emptyAllFields()
     {
         firstnameField.setText("");
