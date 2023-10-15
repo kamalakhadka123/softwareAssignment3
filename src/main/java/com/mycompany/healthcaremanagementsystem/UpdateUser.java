@@ -13,6 +13,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+/**
+ * Controller class for updating user information.
+ */
 public class UpdateUser implements Initializable {
 
 
@@ -34,15 +37,23 @@ public class UpdateUser implements Initializable {
     private TextField dateOfBirthField;
     @FXML
     private TextField roleField;
+
     /**
      * Initializes the controller class.
+     *
+     * @param url The location to resolve relative paths for the root object, or null if the location is not known.
+     * @param rb The resources used to localize the root object, or null if the root object was not localized.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
     
-
+    /**
+     * Handles the action when the "Delete User" button is clicked, deleting the user.
+     *
+     * @param event The event triggered by the button click.
+     */
     @FXML
     private void deleteUserEvent(ActionEvent event) {
         
@@ -58,6 +69,11 @@ public class UpdateUser implements Initializable {
         }
     }
 
+    /**
+     * Handles the action when the "Home" button is clicked, changing the window to the administrator dashboard.
+     *
+     * @param event The event triggered by the button click.
+     */
     @FXML
     private void adminHomeEvent(ActionEvent event) {
         
@@ -66,7 +82,11 @@ public class UpdateUser implements Initializable {
     }
 
 
-
+    /**
+     * Handles the action when the "Update User" button is clicked, updating user information.
+     *
+     * @param event The event triggered by the button click.
+     */
     @FXML
     private void updateUserBtn(ActionEvent event) {
         String firstName = firstnameField.getText();
@@ -145,45 +165,98 @@ public class UpdateUser implements Initializable {
         }
         
     }
-    
-        public TextField getFirstnameField() {
+        /**
+         * Gets the value in the firstname field.
+         *
+         * @return The TextField for the first name.
+         */
+    public TextField getFirstnameField() {
         return firstnameField;
     }
 
+    /**
+     * Gets the value in the lastname field.
+     *
+     * @return The TextField for the last name.
+     */
     public TextField getLastnameField() {
         return lastnameField;
     }
 
+    
+    /**
+     * Gets the value in the email field.
+     *
+     * @return The TextField for the email.
+     */
     public TextField getEmailField() {
         return emailField;
     }
 
+    /**
+     * Gets the value in the password field.
+     *
+     * @return The TextField for the password.
+     */
     public TextField getPasswordField() {
         return passwordField;
     }
 
+    /**
+     * Gets the value in the confirm password field.
+     *
+     * @return The TextField for the confirm password.
+     */
     public TextField getConfirmPassField() {
         return confirmPassField;
     }
 
+    /**
+     * Gets the value in the gender field.
+     *
+     * @return The TextField for the gender.
+     */
     public TextField getGenderField() {
         return genderField;
     }
+    
 
+    
+    /**
+     * Gets the value in the date of birth field.
+     *
+     * @return The TextField for the date of birth.
+     */
     public TextField getDateOfBirthField() {
         return dateOfBirthField;
     }
 
+    /**
+     * Gets the value in the role field.
+     *
+     * @return The TextField for the user role.
+     */
     public TextField getRoleField() {
         return roleField;
     }
-    
+     /**
+     * Displays an error message with the specified text.
+     *
+     * @param e   Indicates whether to display the error message (true) or hide it (false).
+     * @param msg The error message to display.
+     */
         public void displayErrorMessage(boolean e,String msg)
     {
         error.setText(msg);
         error.setVisible(e);
     }
-        
+
+    /**
+     * Displays an alert message box with the specified header and content.
+     *
+     * @param header  The header for the alert message.
+     * @param content The content of the alert message.
+     */
     public void showMessageBox(String header, String content)
     {
             // Display a success alert
