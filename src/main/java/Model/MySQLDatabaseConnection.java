@@ -1,5 +1,8 @@
 
 package Model;
+import com.mycompany.healthcaremanagementsystem.PatientUpdate;
+import com.mycompany.healthcaremanagementsystem.ShowAnalytics;
+import com.mycompany.healthcaremanagementsystem.ShowBills;
 import com.mycompany.healthcaremanagementsystem.UpdateUser;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -302,12 +305,97 @@ public class MySQLDatabaseConnection {
         return patient;
     }
    
- 
+   public AppointmentEntity addAppointmentData(AppointmentEntity a)
+    {
+        try {
+            
+            Connection c = establishConnection();
+            PreparedStatement ps = c.prepareStatement(SQLQueries.ADD_APPOINTMENT);
+            
+            
+            ps.setDate(1,a.getAppointmentDate());
+            ps.setString(2,a.getBookingService());
+            ps.setString(3,a.getBookingTime());
+            ps.setLong(4,a.getPatientID());
+
+
+            int ra = ps.executeUpdate();
+            Statement s = c.createStatement();
+
+            if (ra > 0) {
+                ResultSet rs = s.executeQuery("SELECT LAST_INSERT_ID()");
+                if (rs.next()) {
+                    long id = rs.getInt(1);
+                    a.setAppointmentID(id);
+                }
+            }
+            
+            ps.close();
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return a;
+        
+    }
    
    
-   
+    public boolean searchAppointment(AppointmentEntity ae)
+    {
+        boolean result = false;
+        try {
+            
+            Connection c = establishConnection();
+            PreparedStatement ps = c.prepareStatement(SQLQueries.SEARCH_APPOINTMENT);
+            ps.setString(1,ae.getBookingService());
+            ps.setDate(2,ae.getAppointmentDate());
+            ps.setString(3,ae.getBookingTime());
+            ResultSet rs = ps.executeQuery();         
+
+            result =  rs.next();
+           ps.close();
+  
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+        
+    }
     
- 
+    public BillingInvoiceEntity addBillingInvoice(BillingInvoiceEntity bi)
+    {
+        try {
+            
+            Connection c = establishConnection();
+            PreparedStatement ps = c.prepareStatement(SQLQueries.ADD_INVOICE);    
+            ps.setDouble(1,bi.getAmountDue());
+            ps.setDate(2,bi.getInvoiceDate());
+            ps.setString(3,bi.getServiceProvided());
+            ps.setLong(4,bi.getAppointmentID());
+            ps.setLong(5,bi.getPatientID());
+
+
+            int ra = ps.executeUpdate();
+            Statement s = c.createStatement();
+
+            if (ra > 0) {
+                ResultSet rs = s.executeQuery("SELECT LAST_INSERT_ID()");
+                if (rs.next()) {
+                    long id = rs.getInt(1);
+                    bi.setInvoiceID(id);
+                }
+            }
+            
+            ps.close();
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bi;
+        
+    }
     
     
     public void updateUserViewSet(UpdateUser uu, UsersEntity u)
@@ -322,16 +410,225 @@ public class MySQLDatabaseConnection {
         uu.getRoleField().setText(u.getRole());
     }
     
+    public void updatePatientViewSet(PatientUpdate upc, PatientEntity p)
+    {
+        upc.getFirstnameField().setText(p.getFirstname());
+        upc.getLastnameField().setText(p.getLastname());
+        upc.getGenderMenu().setText(p.getGender());
+        upc.getDateOfBirthField().setValue(p.getDateOfBirth().toLocalDate());
+        upc.getAddressField().setText(p.getAddress());
+        upc.getContactNumberField().setText(p.getContactNum());
+        upc.getMedicareCardField().setText(p.getMedicareNumber());
+        upc.getMedicalHistoryField().setText(p.getMedicalHistory());
+    }
     
-    
+    public List<BillingInvoiceEntity> getAllPatientInvoices(PatientEntity p)
+    {
+        List<BillingInvoiceEntity> list = new ArrayList<>();
+        try {
+            
+            Connection c = establishConnection();
+            PreparedStatement ps = c.prepareStatement(SQLQueries.GET_ALL_PATIENT_INVOICE);
+            
+            
+            ps.setLong(1,p.getPatientId());
 
+
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+                BillingInvoiceEntity i = new BillingInvoiceEntity(rs.getLong(1), rs.getDate(3), rs.getString(4), rs.getLong(5), rs.getLong(6));
+                list.add(i);
+            }
+            
+            ps.close();
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     
+    public List<BillingInvoiceEntity> getAllInvoices()
+    {
+        List<BillingInvoiceEntity> list = new ArrayList<>();
+        try {
+            
+            Connection c = establishConnection();
+            PreparedStatement ps = c.prepareStatement(SQLQueries.GET_ALL_INVOICE);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+                BillingInvoiceEntity i = new BillingInvoiceEntity(rs.getLong(1), rs.getDate(3), rs.getString(4), rs.getLong(5), rs.getLong(6));
+                list.add(i);
+            }
+            
+            ps.close();
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+        
+    public List<PatientEntity> getAllPatients()
+    {
+        List<PatientEntity> list = new ArrayList<>();
+        try {
+            
+            Connection c = establishConnection();
+            PreparedStatement ps = c.prepareStatement(SQLQueries.GET_PATIENTS);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+              PatientEntity  p = new PatientEntity(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
+
+                list.add(p);
+            }
+            
+            ps.close();
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    
+    
+        
+        
+    public void setBillView(ShowBills vbc, PatientEntity p)
+    {
+        vbc.getPatientNameLabel().setText(p.getFirstname()+" "+p.getLastname());
+        List<BillingInvoiceEntity> li = getAllPatientInvoices(p);
+        vbc.getBillArea().appendText("\n");
+        String billView = "";
+        double grandTotal = 0.0;
+        for(BillingInvoiceEntity i:li)
+        {
+            billView += "Invoice ID: "+i.getInvoiceID()+"		 Booking ID: "+i.getAppointmentID()+"\n" +
+                        "\n" +
+                        "Booking Date: "+i.getInvoiceDate()+"\n" +
+                        "------------------------------------------------------\n" +
+                        "Service Selected: "+i.getServiceProvided()+"\n" +
+                        "Charges: $ "+i.getAmountDue()+"\n" +
+                        "GST: $ "+i.getGST()+"\n" +
+                        "Sub Total: $ "+i.getTotal()+"\n\n";
+            grandTotal += Double.parseDouble(i.getTotal());
+        }
+        vbc.getBillArea().appendText(billView);
+        vbc.getBillArea().appendText("\n");
+
+        vbc.getBillArea().appendText("======================================================\n"+""
+                + "Total: $ "+grandTotal);
 
         
-  
+    }
     
-    
-    
+    public void setAnalyticsView(ShowAnalytics vac)
+    {
+        // All Patients
+        List<PatientEntity> patientList = getAllPatients();
+        List<BillingInvoiceEntity> invoiceList = MySQLDatabaseConnection.this.getAllInvoices();
+        
+        int totalPatient = patientList.size();
+        int totalAppointments = invoiceList.size();
+        double totalRevenue = 0;
+        double totalGST = 0;
+        double averageIncome = 0;
+        double grossTotal = 0;
+        
+        int consultationNum = 0;
+        int admittanceNum = 0;
+        int operationNum = 0;
+        int healthCheckupNum = 0;
+        
+        double consultation = 0;
+        double admittance = 0;
+        double operation = 0;
+        double healthCheckup = 0;
+        
+        
+        for(BillingInvoiceEntity i:invoiceList)
+        {
+            totalRevenue += i.getAmountDue();
+            totalGST += Double.parseDouble(i.getGST());
+            grossTotal += Double.parseDouble(i.getTotal());
+            if(i.getServiceProvided().equalsIgnoreCase("Consultation"))
+            {
+                consultationNum++;
+                consultation += i.getAmountDue();
+            }
+            else if(i.getServiceProvided().equalsIgnoreCase("Admittance"))
+            {
+                admittanceNum++;
+                admittance += i.getAmountDue();
+            }
+            else if(i.getServiceProvided().equalsIgnoreCase("Operation"))
+            {
+                operationNum++;
+                operation += i.getAmountDue();
+            }
+            else if(i.getServiceProvided().equalsIgnoreCase("Health Checkup"))
+            {
+                healthCheckupNum++;
+                healthCheckup += i.getAmountDue();
+            }
+        }
+        
+        averageIncome = totalRevenue/totalPatient;
+        
+        LocalDate now = LocalDate.now();
+        vac.getAnalyticsArea().appendText("1 ->	INCOME:\n" +
+                                            "\n" +
+                                            "\n" +
+                                            "	Total Patients : "+totalPatient+"\n" +
+                                            "\n" +
+                                            "	Total Appointements : "+totalAppointments+"\n" +
+                                            "\n" +
+                                            "	Total Revenue : $ "+totalRevenue+"\n" +
+                                            "\n" +
+                                            "	GST : $ "+totalGST+"\n" +
+                                            "\n" +
+                                            "	Total : $ "+grossTotal+" \n" +
+                                            "\n" +
+                                            "\n" +
+                                            "\n" +
+                                            "2 ->    Services Used\n" +
+                                            "\n" +
+                                            "\n" +
+                                            "	Consultation : "+consultationNum+"\n" +
+                                            "\n" +
+                                            "	Admittance : "+admittanceNum+"\n" +
+                                            "\n" +
+                                            "	Operation : "+operationNum+"\n" +
+                                            "\n" +
+                                            "	Health Checkup : "+healthCheckupNum+"\n" +
+                                            "\n" +
+                                            "\n" +
+                                            "\n" +
+                                            "3 ->    Distributed Income By Service\n" +
+                                            "\n" +
+                                            "\n" +
+                                            "	Consultation : $ "+consultation+" \n" +
+                                            "\n" +
+                                            "	Admittance : $ "+admittance+" \n" +
+                                            "\n" +
+                                            "	Operation : $ "+operation+" \n" +
+                                            "\n" +
+                                            "	Health Checkup : $ "+healthCheckup+" \n" +
+                                            "\n" +
+                                            "	Total Income : $ "+(consultation+admittance+operation+healthCheckup)+" ");
+        
+    }
  
    
     

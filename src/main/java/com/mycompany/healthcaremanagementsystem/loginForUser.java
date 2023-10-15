@@ -33,7 +33,7 @@ public class loginForUser implements Initializable {
     private void loginEvent(ActionEvent event) {
         String userID = emailField.getText();
         String password = passwordField.getText();
-        // user login checks
+        // user login checks 
         if(userID.isBlank())
         {
             displayErrorMessage(true, "UserID can not be blank");

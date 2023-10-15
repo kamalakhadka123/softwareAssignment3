@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.healthcaremanagementsystem.PatientUpdate">
+   <children>
+      <Label layoutX="103.0" layoutY="28.0" text="Update Patient Information">
+         <font>
+            <Font size="36.0" />
+         </font></Label>
+      <Label layoutX="159.0" layoutY="122.0" text="First Name:" />
+      <Label layoutX="159.0" layoutY="156.0" text="Last Name:" />
+      <Label layoutX="176.0" layoutY="195.0" text="Gender:" />
+      <Label layoutX="147.0" layoutY="235.0" text="Date Of Birth:" />
+      <Label layoutX="174.0" layoutY="275.0" text="Address:" />
+      <Label layoutX="130.0" layoutY="316.0" text="Contact Number:" />
+      <Label layoutX="131.0" layoutY="410.0" text="Medical History:" />
+      <MenuButton fx:id="genderMenu" layoutX="246.0" layoutY="191.0" mnemonicParsing="false" onAction="#genderMenuEvent" prefHeight="26.0" prefWidth="150.0" text="Select Gender">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#genderMenuEvent" text="Male" />
+          <MenuItem mnemonicParsing="false" onAction="#genderMenuEvent" text="Female" />
+            <MenuItem mnemonicParsing="false" onAction="#genderMenuEvent" text="Other" />
+        </items>
+      </MenuButton>
+      <TextField fx:id="firstnameField" layoutX="246.0" layoutY="118.0" promptText="John" />
+      <TextField fx:id="lastnameField" layoutX="246.0" layoutY="152.0" promptText="Smith" />
+      <TextField fx:id="addressField" layoutX="246.0" layoutY="271.0" promptText="22 Billionaire's Row" />
+      <TextField fx:id="contactNumberField" layoutX="246.0" layoutY="312.0" promptText="0033 123 222" />
+      <DatePicker fx:id="dateOfBirthField" layoutX="247.0" layoutY="231.0" prefHeight="26.0" prefWidth="150.0" />
+      <Button layoutX="247.0" layoutY="529.0" mnemonicParsing="false" onAction="#updatePatientBtn" prefHeight="26.0" prefWidth="150.0" text="Update Patient" />
+      <Label layoutX="95.0" layoutY="362.0" text="Medicare Card Number:" />
+      <TextField fx:id="medicareCardField" layoutX="246.0" layoutY="358.0" promptText="9999 88888 1" />
+      <Text fx:id="error" fill="RED" layoutX="115.0" layoutY="586.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="450.13677978515625" />
+      <Button layoutX="411.0" layoutY="613.0" mnemonicParsing="false" onAction="#homeBtn" text="Home" />
+      <Button layoutX="479.0" layoutY="613.0" mnemonicParsing="false" onAction="#logoutBtn" text="Log Out" />
+      <TextArea fx:id="medicalHistoryField" layoutX="245.0" layoutY="396.0" prefHeight="121.0" prefWidth="150.0" promptText="Cold, Viral Feaver" wrapText="true" />
+   </children>
+</AnchorPane>

@@ -46,7 +46,20 @@ public class App extends Application {
                 UpdateUser uu = (UpdateUser) loader.getController();
                 getDb().updateUserViewSet(uu, getSearchedUser());
             }
-            
+            if(fxmlFileName.equalsIgnoreCase("PatientUpdate.fxml"))
+            {
+                PatientUpdate pu = (PatientUpdate) loader.getController();
+                getDb().updatePatientViewSet(pu, getSearchedPatient());
+            }
+            if(fxmlFileName.equalsIgnoreCase("ShowBills.fxml"))
+            {
+                ShowBills sb = (ShowBills) loader.getController();
+                getDb().setBillView(sb, getSearchedPatient());
+            }
+            if(fxmlFileName.equalsIgnoreCase("ShowAnalytics.fxml")){
+                ShowAnalytics sha = (ShowAnalytics) loader.getController();
+                getDb().setAnalyticsView(sha);
+            }
             
             currentDisplayStage = new Scene(root);
             mainAppStage.setScene(currentDisplayStage);
@@ -88,5 +101,5 @@ public class App extends Application {
         App.searchedPatient = searchedPatient;
     }
  
-    // test change
+    
 }
