@@ -43,9 +43,5 @@ public class MedicalStaffDashboard implements Initializable {
     }
 
 
-    @FXML
-    private void viewAnalyticsDashboardEvent(ActionEvent event) {
-        App.changeWindow("ShowAnalytics.fxml");
-    }
 
 }
