@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.healthcaremanagementsystem.UpdateUser">
+   <children>
+      <Label layoutX="167.0" layoutY="17.0" text="Modify User Account">
+         <font>
+            <Font size="36.0" />
+         </font></Label>
+      <Label layoutX="159.0" layoutY="92.0" text="First Name:" />
+      <Label layoutX="159.0" layoutY="126.0" text="Last Name:" />
+      <Label layoutX="176.0" layoutY="165.0" text="Gender:" />
+      <Label layoutX="147.0" layoutY="205.0" text="Date Of Birth:" />
+      <Label layoutX="145.0" layoutY="245.0" text="Email Address:" />
+      <Label layoutX="162.0" layoutY="286.0" text="Password:" />
+      <Label layoutX="189.0" layoutY="374.0" text="Role:" />
+      <TextField fx:id="firstnameField" layoutX="246.0" layoutY="88.0" />
+      <TextField fx:id="lastnameField" layoutX="246.0" layoutY="122.0" />
+      <TextField fx:id="emailField" layoutX="246.0" layoutY="241.0" />
+      <TextField fx:id="passwordField" layoutX="246.0" layoutY="282.0" />
+      <Button layoutX="247.0" layoutY="408.0" mnemonicParsing="false" onAction="#updateUserBtn" prefHeight="26.0" prefWidth="150.0" text="Update" />
+      <Label layoutX="118.0" layoutY="332.0" text="Confirm Password:" />
+      <TextField fx:id="confirmPassField" layoutX="246.0" layoutY="328.0" />
+      <TextField fx:id="genderField" layoutX="247.0" layoutY="161.0" />
+      <TextField fx:id="dateOfBirthField" layoutX="246.0" layoutY="201.0" />
+      <TextField fx:id="roleField" layoutX="246.0" layoutY="370.0" />
+      <Button layoutX="420.0" layoutY="408.0" mnemonicParsing="false" onAction="#deleteUserEvent" prefHeight="26.0" prefWidth="150.0" text="Delete" />
+      <Button layoutX="487.0" layoutY="516.0" mnemonicParsing="false" onAction="#adminHomeEvent" prefHeight="26.0" prefWidth="98.0" text="Admin Home" />
+      <Text fx:id="error" fill="RED" layoutX="118.0" layoutY="462.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="460.53668212890625" />
+   </children>
+</AnchorPane>
