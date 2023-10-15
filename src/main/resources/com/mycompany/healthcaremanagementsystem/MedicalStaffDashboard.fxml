@@ -16,6 +16,5 @@
       <Button layoutX="502.0" layoutY="303.0" mnemonicParsing="false" onAction="#logoutEvent" prefHeight="26.0" prefWidth="82.0" text="Log Out" />
       <Button layoutX="327.0" layoutY="110.0" mnemonicParsing="false" onAction="#scheduleAppointmentEvent" prefHeight="34.0" prefWidth="175.0" text="Schedule Appointment" />
       <Button layoutX="327.0" layoutY="177.0" mnemonicParsing="false" onAction="#viewBillsEvent" prefHeight="34.0" prefWidth="175.0" text="View Bills" />
-      <Button layoutX="197.0" layoutY="243.0" mnemonicParsing="false" onAction="#viewAnalyticsDashboardEvent" prefHeight="34.0" prefWidth="175.0" text="View Analytics Dashboard" />
    </children>
 </AnchorPane>
