@@ -24,7 +24,7 @@ public class ShowAnalytics implements Initializable {
     
     @FXML
     private void homeBtnEvent(ActionEvent event) {
-        App.changeWindow("MedicalStaffDashboard.fxml");
+        App.changeWindow("AdministratorDashboard.fxml");
     }
 
     @FXML
