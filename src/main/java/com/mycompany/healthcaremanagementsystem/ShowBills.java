@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 
@@ -43,7 +45,7 @@ public class ShowBills implements Initializable {
     public Text getPatientNameLabel() {
         return patientNameLabel;
     }
-    
+
     @FXML
     private void printEvent(ActionEvent event) {
         App.getDb().printPatientBill();
@@ -58,5 +60,7 @@ public class ShowBills implements Initializable {
                 }
             });
     }
+    
+    
 
 }
