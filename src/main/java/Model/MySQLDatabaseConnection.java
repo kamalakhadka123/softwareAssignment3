@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
 
+/**
+ * The MySQLDatabaseConnection class handles connections and operations with a MySQL database.
+ */
 public class MySQLDatabaseConnection {
     
     private String url;
@@ -53,7 +56,11 @@ public class MySQLDatabaseConnection {
         addPatient(p);
     }
     
-    // secure a database connnection
+    /**
+     * Establish a secure database connection.
+     *
+     * @return A secure database connection.
+     */
     private Connection establishConnection()
     {
         Connection c = null;
@@ -65,7 +72,10 @@ public class MySQLDatabaseConnection {
         }
         return c;
     }
-    
+
+    /**
+     * Generate tables in the database.
+     */
     private void generateTables()
     {
         try {
@@ -89,7 +99,10 @@ public class MySQLDatabaseConnection {
             e.printStackTrace();
         }
     }
-    
+
+     /**
+     * Alter tables to set auto-increment properties.
+     */
     public void alterTableAutoIncrement()
     {
         try {
@@ -106,7 +119,13 @@ public class MySQLDatabaseConnection {
             e.printStackTrace();
         }
     }
-    
+
+    /**
+     * Add a user to the database.
+     *
+     * @param admin The UsersEntity representing the user to be added.
+     * @return The UsersEntity representing the added user.
+     */
     public UsersEntity addUser(UsersEntity admin)
     {
         try {
@@ -144,7 +163,12 @@ public class MySQLDatabaseConnection {
         return admin;
     }
     
-    
+    /**
+     * Modifies user information in the database based on the user's ID.
+     *
+     * @param admin The UsersEntity representing the user to be modified.
+     * @return The UsersEntity representing the modified user.
+     */
     public UsersEntity modifyUserByID(UsersEntity admin)
     {
         try {
@@ -173,7 +197,12 @@ public class MySQLDatabaseConnection {
         return admin;
     }
     
-    
+    /**
+     * Retrieves a user from the database by their ID.
+     *
+     * @param id The ID of the user to retrieve.
+     * @return The UsersEntity representing the retrieved user, or null if not found.
+     */
     public UsersEntity selectUserByID(long id)
     {
         UsersEntity userEntity = null;
@@ -197,7 +226,12 @@ public class MySQLDatabaseConnection {
             
         return userEntity;
     }
-    
+
+    /**
+     * Deletes a user from the database by their ID.
+     *
+     * @param userID The ID of the user to delete.
+     */
     public void deleteUser(long userID)
     {
         
@@ -213,7 +247,12 @@ public class MySQLDatabaseConnection {
             
     }
     
-    
+    /**
+     * Adds a patient to the database.
+     *
+     * @param patient The PatientEntity representing the patient to be added.
+     * @return The PatientEntity representing the added patient.
+     */
     public PatientEntity addPatient(PatientEntity patient)
     {
         try {
@@ -253,7 +292,13 @@ public class MySQLDatabaseConnection {
         return patient;
         
     }
-    
+
+    /**
+     * Retrieves a patient from the database by their ID.
+     *
+     * @param id The ID of the patient to retrieve.
+     * @return The PatientEntity representing the retrieved patient, or null if not found.
+     */
     public PatientEntity selectPatient(long id)
     {
         PatientEntity patient = null;
@@ -278,7 +323,12 @@ public class MySQLDatabaseConnection {
         return patient;
     }
     
-    
+    /**
+     * Modifies patient information in the database based on the patient's ID.
+     *
+     * @param patient The PatientEntity representing the patient to be modified.
+     * @return The PatientEntity representing the modified patient.
+     */
    public PatientEntity modifyPatient(PatientEntity patient)
     {
         try {
@@ -307,7 +357,12 @@ public class MySQLDatabaseConnection {
         }
         return patient;
     }
-   
+       /**
+     * Adds an appointment record to the database.
+     *
+     * @param a The AppointmentEntity representing the appointment data to be added.
+     * @return The AppointmentEntity representing the added appointment data.
+     */
    public AppointmentEntity addAppointmentData(AppointmentEntity a)
     {
         try {
@@ -343,7 +398,12 @@ public class MySQLDatabaseConnection {
         
     }
    
-   
+   /**
+     * Searches for an appointment based on its service, date, and time.
+     *
+     * @param ae The AppointmentEntity representing the appointment data to search for.
+     * @return True if the appointment is found, false otherwise.
+     */
     public boolean searchAppointment(AppointmentEntity ae)
     {
         boolean result = false;
@@ -365,7 +425,13 @@ public class MySQLDatabaseConnection {
         return result;
         
     }
-    
+
+    /**
+     * Adds a billing invoice to the database.
+     *
+     * @param bi The BillingInvoiceEntity representing the invoice data to be added.
+     * @return The BillingInvoiceEntity representing the added invoice data.
+     */
     public BillingInvoiceEntity addBillingInvoice(BillingInvoiceEntity bi)
     {
         try {
@@ -400,7 +466,12 @@ public class MySQLDatabaseConnection {
         
     }
     
-    
+    /**
+     * Sets the view fields in the UpdateUser view based on a user's data.
+     *
+     * @param uu The UpdateUser view.
+     * @param u The UsersEntity representing the user data.
+     */
     public void updateUserViewSet(UpdateUser uu, UsersEntity u)
     {
         uu.getFirstnameField().setText(u.getFirstName());
@@ -413,6 +484,12 @@ public class MySQLDatabaseConnection {
         uu.getRoleField().setText(u.getRole());
     }
     
+    /**
+     * Sets the view fields in the PatientUpdate view based on a patient's data.
+     *
+     * @param upc The PatientUpdate view.
+     * @param p The PatientEntity representing the patient data.
+     */
     public void updatePatientViewSet(PatientUpdate upc, PatientEntity p)
     {
         upc.getFirstnameField().setText(p.getFirstname());
@@ -424,7 +501,12 @@ public class MySQLDatabaseConnection {
         upc.getMedicareCardField().setText(p.getMedicareNumber());
         upc.getMedicalHistoryField().setText(p.getMedicalHistory());
     }
-    
+    /**
+     * Retrieves a list of billing invoices associated with a specific patient.
+     *
+     * @param p The PatientEntity representing the patient.
+     * @return A list of BillingInvoiceEntity objects representing the patient's invoices.
+     */
     public List<BillingInvoiceEntity> getAllPatientInvoices(PatientEntity p)
     {
         List<BillingInvoiceEntity> list = new ArrayList<>();
@@ -453,7 +535,11 @@ public class MySQLDatabaseConnection {
         }
         return list;
     }
-    
+    /**
+     * Retrieves a list of all billing invoices in the database.
+     *
+     * @return A list of BillingInvoiceEntity objects representing all invoices.
+     */
     public List<BillingInvoiceEntity> getAllInvoices()
     {
         List<BillingInvoiceEntity> list = new ArrayList<>();
@@ -478,7 +564,11 @@ public class MySQLDatabaseConnection {
         }
         return list;
     }
-        
+    /**
+     * Retrieves a list of all patients in the database.
+     *
+     * @return A list of PatientEntity objects representing all patients.
+     */
     public List<PatientEntity> getAllPatients()
     {
         List<PatientEntity> list = new ArrayList<>();
@@ -507,7 +597,12 @@ public class MySQLDatabaseConnection {
     
     
         
-        
+    /**
+     * Sets the billing view with billing information for a specific patient.
+     *
+     * @param vbc The ShowBills view.
+     * @param p The PatientEntity representing the patient.
+     */    
     public void setBillView(ShowBills vbc, PatientEntity p)
     {
         String bill="";
@@ -537,7 +632,9 @@ public class MySQLDatabaseConnection {
         printBill = vbc.getBillArea().getText();
         patient = p;
     }
-    
+    /**
+     * Prints the patient's bill information to a file.
+     */
     public void printPatientBill()
     {
         try {
@@ -548,7 +645,11 @@ public class MySQLDatabaseConnection {
         } catch (Exception e) {
         }
     }
-    
+    /**
+     * Sets the analytics view with various statistical information.
+     *
+     * @param vac The ShowAnalytics view.
+     */
     public void setAnalyticsView(ShowAnalytics vac)
     {
         // All Patients
