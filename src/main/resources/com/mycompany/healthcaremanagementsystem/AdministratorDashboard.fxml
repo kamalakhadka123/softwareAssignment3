@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="376.0" prefWidth="543.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.healthcaremanagementsystem.AdministratorDashboard">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="543.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.healthcaremanagementsystem.AdministratorDashboard">
    <children>
       <Label layoutX="110.0" layoutY="22.0" text="Administrator Home">
          <font>
@@ -15,6 +15,5 @@
       <Button layoutX="170.0" layoutY="204.0" mnemonicParsing="false" onAction="#modifyUserEvent" prefHeight="42.0" prefWidth="202.0" text="Modify New User" />
       <Button layoutX="170.0" layoutY="357.0" mnemonicParsing="false" onAction="#logoutEvent" prefHeight="42.0" prefWidth="202.0" text="Log Out" />
       <Button layoutX="170.0" layoutY="285.0" mnemonicParsing="false" onAction="#viewAnalyticsEvent" prefHeight="42.0" prefWidth="202.0" text="View Analytics" />
-
    </children>
 </AnchorPane>
