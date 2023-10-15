@@ -14,5 +14,7 @@
       <Button layoutX="171.0" layoutY="130.0" mnemonicParsing="false" onAction="#createNewUserEvent" prefHeight="42.0" prefWidth="202.0" text="Create New User" />
       <Button layoutX="170.0" layoutY="204.0" mnemonicParsing="false" onAction="#modifyUserEvent" prefHeight="42.0" prefWidth="202.0" text="Modify New User" />
       <Button layoutX="170.0" layoutY="278.0" mnemonicParsing="false" onAction="#logoutEvent" prefHeight="42.0" prefWidth="202.0" text="Log Out" />
+      <Button layoutX="170.0" layoutY="285.0" mnemonicParsing="false" onAction="#viewAnalyticsEvent" prefHeight="42.0" prefWidth="202.0" text="View Analytics" />
+
    </children>
 </AnchorPane>
