@@ -44,6 +44,19 @@ public class ShowBills implements Initializable {
         return patientNameLabel;
     }
     
-    
+    @FXML
+    private void printEvent(ActionEvent event) {
+        App.getDb().printPatientBill();
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Healthlink Management System");
+            alert.setHeaderText("Bill Printed");
+            alert.setContentText("Patient Bill has been printed");
+            alert.getButtonTypes().setAll(ButtonType.OK);
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+
+                }
+            });
+    }
 
 }
