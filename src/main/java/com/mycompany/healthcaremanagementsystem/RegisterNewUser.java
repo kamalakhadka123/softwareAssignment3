@@ -46,6 +46,11 @@ public class RegisterNewUser implements Initializable {
     }    
     
 
+    /**
+     * Handles the action when the "Create User" button is clicked.
+     *
+     * @param event The ActionEvent triggering this method.
+     */
 
     @FXML
     private void createUserBtn(ActionEvent event) {
@@ -116,6 +121,11 @@ public class RegisterNewUser implements Initializable {
         }
     }
 
+    /**
+     * Handles the selection of gender from the MenuButton.
+     *
+     * @param event The ActionEvent triggering this method.
+     */
     @FXML
     private void genderMenuEvent(ActionEvent event) {
         MenuItem selectedItem = (MenuItem) event.getSource();
@@ -123,30 +133,54 @@ public class RegisterNewUser implements Initializable {
         genderMenu.setText(selected);
     }
 
+    /**
+     * Handles the selection of user role from the MenuButton.
+     *
+     * @param event The ActionEvent triggering this method.
+     */
     @FXML
     private void roleMenuEvent(ActionEvent event) {
                 MenuItem selectedItem = (MenuItem) event.getSource();
         String selected = selectedItem.getText();
         roleMenu.setText(selected);
     }
-    
-        
+
+    /**
+     * Displays an error message or clears the error message text.
+     *
+     * @param e   A boolean indicating whether to display an error message.
+     * @param msg The error message text.
+     */
+            
     public void displayErrorMessage(boolean e,String msg)
     {
         error.setText(msg);
         error.setVisible(e);
     }
 
+    /**
+     * Handles the "Home" button click event.
+     *
+     * @param event The ActionEvent triggering this method.
+     */
     @FXML
     private void homeBtn(ActionEvent event) {
         App.changeWindow("AdministratorDashboard.fxml");
     }
 
+    /**
+     * Handles the "Logout" button click event.
+     *
+     * @param event The ActionEvent triggering this method.
+     */
     @FXML
     private void logoutBtn(ActionEvent event) {
         App.changeWindow("loginForUser.fxml");
     }
-    
+
+    /**
+     * Clears all input fields on the form.
+     */
     public void emptyAllFields()
     {
         firstnameField.setText("");
