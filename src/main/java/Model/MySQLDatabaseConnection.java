@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
 
 public class MySQLDatabaseConnection {
@@ -19,7 +20,9 @@ public class MySQLDatabaseConnection {
     private String username;
     private String password;
     private Connection c;
-    
+    private String printBill;
+    private PatientEntity patient;
+
     public MySQLDatabaseConnection(String username, String password)
     {
             String dbUrl = "jdbc:mysql://localhost:3306";
@@ -507,6 +510,7 @@ public class MySQLDatabaseConnection {
         
     public void setBillView(ShowBills vbc, PatientEntity p)
     {
+        String bill="";
         vbc.getPatientNameLabel().setText(p.getFirstname()+" "+p.getLastname());
         List<BillingInvoiceEntity> li = getAllPatientInvoices(p);
         vbc.getBillArea().appendText("\n");
@@ -530,7 +534,19 @@ public class MySQLDatabaseConnection {
         vbc.getBillArea().appendText("======================================================\n"+""
                 + "Total: $ "+grandTotal);
 
-        
+        printBill = vbc.getBillArea().getText();
+        patient = p;
+    }
+    
+    public void printPatientBill()
+    {
+        try {
+            String fileName = patient.getFirstname()+" "+patient.getLastname();
+            Formatter f = new Formatter(fileName);
+            f.format(printBill);
+            f.close();
+        } catch (Exception e) {
+        }
     }
     
     public void setAnalyticsView(ShowAnalytics vac)
