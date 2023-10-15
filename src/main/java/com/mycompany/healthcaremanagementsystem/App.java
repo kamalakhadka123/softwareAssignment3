@@ -88,5 +88,5 @@ public class App extends Application {
         App.searchedPatient = searchedPatient;
     }
  
-    // test
+    // test change
 }
